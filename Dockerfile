@@ -2,7 +2,7 @@ FROM alpine:3.8
 MAINTAINER josan <704504886@qq.com>
 
 ENV LOGSTASH_VERSION=5.6.5
-COPY run.sh grok.conf /tmp/
+COPY run.sh /tmp/
 ENV ES_URL=192.168.1.1:9200
 
 RUN set -x \
@@ -17,7 +17,7 @@ RUN set -x \
  && rm -rf logstash-${LOGSTASH_VERSION}.tar.gz \
  && ln -s /logstash /bin/logstash \
  && cp /tmp/run.sh /run.sh \
- && cat /tmp/grok.conf > /grok.conf \
+# && cat /tmp/grok.conf > /grok.conf \
  && sed -i "s/yourlogstashurl/$LOGSTASH_URL/g" /logstash.yml \
 
  
